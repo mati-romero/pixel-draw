@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pixel Draw</title>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
+		<link rel="stylesheet" type="text/css" href="styles/styles.css">
+		<link rel="stylesheet" type="text/css" href="styles/index.css">
+		<link rel="stylesheet" type="text/css" href="text-font/text-font.css">
+
+		<link rel="shortcut icon" type="image/x-icon" href="img/pencil-up.png">
+	</head>	
+	<body onkeydown = "keyboard_control(event);">
+		<div id="content">
+			<p class="icon-octoface">  Pixel Draw</p>
+
+			<div id="panel">
+
+				<div id="screen-editor">
+					<label class="label">Background <input type="color" id ="bcolor" onchange="change_background_color();"></label>
+					<label class="label">Width <input id="bwidth" type="number" value="500" name="" min="256" max="1024"></label>
+					<label class="label">Height <input id="bheight" type="number" value="500" name="" min="256" max="768"></label>
+					<a href="#editor" class="icon-measure" onclick = "change_background_size()" ></a>
+				</div>
+
+				<div id="editor">
+					<canvas width="500" height="500" id="canvas"  onmousedown = "draw(event);" onmousemove = "update_coordinates(event);pencil(event);eraser(event);" onmouseup="turn_off_pencil();" onmouseleave ="mouse_off_the_board(event);"></canvas></td>
+					
+					<div id="tools">
+						<a href="#editor" onclick="turn_on_pencil();" class="icon-pencil"></a>
+						<a href="#editor" onclick=" turn_on_eraser();" class="icon-eraser"></a>
+						<a href="#editor" onclick="turn_on_seal();" class="icon-stop"></a>
+						<a href="#editor" onclick="undo_segment();" class="icon-undo"></a>
+						<a href="#editor" onclick="empty_arrangement();" class="icon-trashcan"></a>
+						<a href="#editor" id ="s_img" download="pixel-draw.png" class="icon-download"></a> 
+						<label class="icon-design-pencil-rule-streamline"> <input id="psize" type="number" name="" min="0" max="100" value="10" onchange ="change_pixel_size()"></label>
+						<label class="label"><input id="pcolor" type="color" onchange="change_pixel_color();"> Color</label>
+					</div>
+				</div>
+
+				<div id="output-elements">
+					<label class="label" >Coordinate x: <output id="cx" for=""></output></label>
+					<label class="label" >Coordinate y: <output id="cy" for=""></output></label>
+
+					<div id="code-box">
+
+						<p class="code">var canvas = document.getElementById("canvas");</p>
+						<p class="code">var ctx = canvas.getContext("2d");</p>
+						
+						
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+		<script src="js/paint.js"></script>
+
+		<script type="text/javascript">
+			document.getElementById("s_img").addEventListener("click",save_img,false);
+		</script>
+
+	</body>
+</html>
